@@ -1,0 +1,23 @@
+@media (max-width: 800px){
+    .box{
+        flex-direction: column;
+        height: auto;
+    }
+    .box .rigth{
+        display: flex;
+        flex-direction: column;
+    }
+    .box .right p {
+        margin: 20px 30px;
+    }
+    .box .left h1 {
+        margin: 20px 0;
+    }
+    .box .left input {
+        width: 100%;
+    }
+    .box .left{
+        padding: 0 20px;
+        margin: 0 20px;
+    }
+}
