@@ -6,7 +6,6 @@ function calcularImc(){
     let img = document.getElementById('img')
 
     let imc = peso / (altura * altura).toFixed(2)
-
     if(imc >= 0 && imc < 18.5){
         img.src = 'Imagens/magro.png'
         document.body.style.background = '#5bd9ab'
