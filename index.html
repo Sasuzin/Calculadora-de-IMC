@@ -2,33 +2,128 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcule seu IMC (Índice de Massa Corporal), veja sua classificação segundo a OMS e descubra a faixa de peso saudável para a sua altura.">
+    <meta name="theme-color" content="#fbe3c6">
     <title>Calculadora de IMC</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Yanone+Kaffeesatz:wght@500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/responsivo.css">
 </head>
 <body>
-        <div class="container">
+    <main class="container">
 
-            <div class="box">
+        <section class="card">
 
-                <div class="left">
-                    <h1>Calcule seu IMC</h1>
-                    <input type="number" placeholder="Altura ex: 1.90" id="altura">
-                    <input type="number" placeholder="Peso ex: 83Kg" id="peso">
-                    <button id="button" onclick="calcularImc()">Calcular</button>
-                </div>
+            <!-- Formulário -->
+            <div class="painel painel--form">
+                <span class="tag">Saúde em números</span>
+                <h1 class="titulo">Calcule seu <span>IMC</span></h1>
+                <p class="subtitulo">
+                    Informe sua altura e seu peso para descobrir seu Índice de Massa Corporal
+                    e em qual faixa da OMS você se encaixa.
+                </p>
 
-                <div class="rigth">
-                    <p>IMC é a sigla para Índice de Massa Corporal. Usando parametros fornecidos pela Organização Mundial 
-                        da Saude, é possivel calcular o peso ideal de cada pessoa.</p>
-                        <img src="Imagens/tela principal.png" alt="" class="img" id="img">
-                </div>
+                <form id="form-imc" class="form" novalidate>
+                    <div class="campo">
+                        <label for="altura">Altura</label>
+                        <div class="campo__input">
+                            <input type="text" id="altura" name="altura" inputmode="decimal"
+                                   placeholder="Ex: 1,75" autocomplete="off" aria-describedby="erro-altura">
+                            <span class="campo__unidade">m</span>
+                        </div>
+                        <small class="campo__erro" id="erro-altura" role="alert"></small>
+                    </div>
+
+                    <div class="campo">
+                        <label for="peso">Peso</label>
+                        <div class="campo__input">
+                            <input type="text" id="peso" name="peso" inputmode="decimal"
+                                   placeholder="Ex: 70,5" autocomplete="off" aria-describedby="erro-peso">
+                            <span class="campo__unidade">kg</span>
+                        </div>
+                        <small class="campo__erro" id="erro-peso" role="alert"></small>
+                    </div>
+
+                    <div class="acoes">
+                        <button type="submit" class="btn btn--primario">Calcular</button>
+                        <button type="reset" class="btn btn--secundario">Limpar</button>
+                    </div>
+                </form>
+
+                <p class="dica">
+                    💡 Pode usar vírgula ou ponto. Se digitar a altura em centímetros (ex: 175),
+                    a conversão é feita automaticamente.
+                </p>
             </div>
 
-        </div>
+            <!-- Resultado -->
+            <div class="painel painel--resultado" aria-live="polite">
 
+                <div class="intro" id="intro">
+                    <img src="Imagens/tela principal.png" class="intro__img"
+                         alt="Escala do IMC: abaixo do peso, normal, excesso de peso, obesidade e extremamente obeso">
+                    <p>
+                        IMC é a sigla para <strong>Índice de Massa Corporal</strong>. Usando os parâmetros
+                        da Organização Mundial da Saúde, é possível saber se o seu peso está adequado
+                        para a sua altura.
+                    </p>
+                </div>
+
+                <div class="resultado" id="resultado" hidden>
+                    <div class="resultado__topo">
+                        <div>
+                            <span class="resultado__rotulo">Seu IMC é</span>
+                            <strong class="resultado__valor" id="valor-imc">0</strong>
+                        </div>
+                        <span class="selo" id="selo"></span>
+                    </div>
+
+                    <div class="escala" aria-hidden="true">
+                        <div class="escala__barra">
+                            <span class="escala__segmento" style="--cor: #5bd9ab"></span>
+                            <span class="escala__segmento" style="--cor: #1ba673"></span>
+                            <span class="escala__segmento" style="--cor: #f28f79"></span>
+                            <span class="escala__segmento" style="--cor: #f2637e"></span>
+                            <span class="escala__segmento" style="--cor: #d94e4e"></span>
+                            <div class="escala__marcador" id="marcador"></div>
+                        </div>
+                        <div class="escala__valores">
+                            <span>18,5</span>
+                            <span>25</span>
+                            <span>30</span>
+                            <span>35</span>
+                        </div>
+                    </div>
+
+                    <img src="Imagens/peso-ideal.png" alt="" class="resultado__img" id="img">
+
+                    <div class="info">
+                        <span class="info__rotulo">Peso saudável para a sua altura</span>
+                        <strong class="info__valor" id="peso-ideal"></strong>
+                        <small class="info__extra" id="diferenca"></small>
+                    </div>
+
+                    <p class="resultado__msg" id="mensagem"></p>
+                </div>
+
+            </div>
+        </section>
+
+        <p class="aviso">
+            O IMC é uma referência geral para adultos e não substitui a avaliação de um profissional de saúde.
+        </p>
+
+        <footer class="rodape">
+            Feito com 💚 por <a href="https://github.com/Sasuzin" target="_blank" rel="noopener">Sasuzin</a>
+        </footer>
+
+    </main>
 
     <script src="JS/index.js"></script>
 </body>

@@ -1,23 +1,40 @@
-@media (max-width: 800px){
-    .box{
-        flex-direction: column;
-        height: auto;
+/* Tablets e telas menores: os painéis ficam um embaixo do outro */
+@media (max-width: 900px) {
+    .card {
+        grid-template-columns: 1fr;
     }
-    .box .rigth{
-        display: flex;
-        flex-direction: column;
+
+    .painel--form {
+        padding: 40px 32px 24px;
     }
-    .box .right p {
-        margin: 20px 30px;
+
+    .painel--resultado {
+        min-height: auto;
+        margin: 0 12px 12px;
+        padding: 32px 24px;
     }
-    .box .left h1 {
-        margin: 20px 0;
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+    .container {
+        padding: 16px;
     }
-    .box .left input {
-        width: 100%;
+
+    .painel--form {
+        padding: 32px 20px 20px;
     }
-    .box .left{
-        padding: 0 20px;
-        margin: 0 20px;
+
+    .painel--resultado {
+        margin: 0 8px 8px;
+        padding: 24px 16px;
+    }
+
+    .resultado__valor {
+        font-size: 4.6rem;
+    }
+
+    .btn {
+        padding: 15px 20px;
     }
 }
