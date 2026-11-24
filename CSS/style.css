@@ -460,11 +460,26 @@ body::after {
     color: var(--texto-suave);
 }
 
-.rodape a {
+.rodape__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 2px;
     font-weight: 600;
     color: var(--texto);
-    text-decoration-color: var(--tema);
-    text-underline-offset: 3px;
+    text-decoration: none;
+    border-bottom: 2px solid var(--tema);
+    transition: color .2s, border-color var(--transicao-cor);
+}
+
+.rodape__link:hover {
+    color: #0a66c2;
+}
+
+.rodape__icone {
+    width: 16px;
+    height: 16px;
+    fill: #0a66c2;
 }
 
 /* ---------- Animações ---------- */
